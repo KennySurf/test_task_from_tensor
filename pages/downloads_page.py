@@ -22,8 +22,11 @@ class DownloadsPage(BasePage):
             files = [f for f in os.listdir(download_path) if f.endswith(file_extension) or f == file_name]
             download_complete = bool(files)
 
+        self.size_on_download_page_in_bytes = int(float(self.get_element_text(DownloadsPageLocators.DOWNLOADS_LINK).split()[2]) * 1024 * 1024)
+        self.tolerance_in_bytes = 10485.76
+
+
         if files:
-            file_size = os.path.getsize(os.path.join(download_path, files[0]))
-            return file_size
+            return os.path.getsize(os.path.join(download_path, files[0]))
         else:
             return 0
