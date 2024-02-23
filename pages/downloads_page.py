@@ -25,7 +25,6 @@ class DownloadsPage(BasePage):
         self.size_on_download_page_in_bytes = int(float(self.get_element_text(DownloadsPageLocators.DOWNLOADS_LINK).split()[2]) * 1024 * 1024)
         self.tolerance_in_bytes = 10485.76
 
-
         if files:
             return os.path.getsize(os.path.join(download_path, files[0]))
         else:
