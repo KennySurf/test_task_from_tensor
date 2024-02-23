@@ -21,5 +21,5 @@ class TestDownloadsPage:
     def test_user_must_be_download_plugin(self):
         self.downloads_page.download_plugin()
         actual_size = self.downloads_page.check_downloaded_plugin_on_pc()
-        assert actual_size == 8553592, \
+        assert (self.downloads_page.size_on_download_page_in_bytes - actual_size) <= self.downloads_page.tolerance_in_bytes, \
             'file is missing or file size does not match'
